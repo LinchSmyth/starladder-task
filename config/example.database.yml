@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: xxxxxxxxxx
+  password: xxxxxxxxxx
+
+development:
+  <<: *default
+  database: starladder_task_development
+
+test:
+  <<: *default
+  database: starladder_task_test
+
+production:
+  <<: *default
+  database: starladder_task_production
