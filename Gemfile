@@ -35,9 +35,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'webpacker'
 gem 'devise'
-gem 'jwt'
 gem 'dotenv-rails'
-gem 'omniauth-oauth2'
+gem 'omniauth-oauth2', '~> 1.5.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
