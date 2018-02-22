@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, only: []
+
   root to: 'application#index'
+
+  get 'auth/:provider/callback', to: 'omniauth#callback'
+
+  resource :users do
+    get '/login', to: 'users#login'
+  end
 end
