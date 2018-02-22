@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+[
+  'DOTA2 Amateurs league',
+  'DOTA2 Premier league',
+  'DOTA2 Professional league',
+  'DOTA2 AllStars'
+].each do |name|
+  Tournament.create(name: name)
+end
