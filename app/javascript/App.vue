@@ -10,9 +10,11 @@
 <v-app>
 
   <v-toolbar color="indigo" dark fixed app>
+    <v-spacer v-if="!showActions"/>
+
     <v-toolbar-title>StarLadder</v-toolbar-title>
 
-    <v-toolbar-items>
+    <v-toolbar-items v-if="showActions">
       <v-btn flat>
         tournaments
       </v-btn>
@@ -20,7 +22,7 @@
 
     <v-spacer/>
 
-    <v-toolbar-items>
+    <v-toolbar-items v-if="showActions">
       <v-btn flat>
         login
       </v-btn>
@@ -44,12 +46,27 @@
   Vue.use(VueResource)
   Vue.use(Vuetify)
 
-//  Vue.http.interceptors.push(function(request, next) {
-//    request.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-//    next();
-//  });
+  Vue.http.interceptors.push(function(request, next) {
+    request.headers.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`);
+    next();
+  });
 
   export default {
-    name: 'App'
+    name: 'App',
+    data() {
+      return {
+        showActions: true
+      }
+    },
+
+    created() {
+      window.eventBus.$on('toggle-actions', this.toggleActions)
+    },
+
+    methods: {
+      toggleActions(displayable) {
+        this.showActions = displayable
+      },
+    },
   }
 </script>

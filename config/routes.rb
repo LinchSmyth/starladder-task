@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'omniauth#callback'
 
-  resource :users do
+  resource :users, only: [:update] do
     get '/login', to: 'users#login'
   end
 end

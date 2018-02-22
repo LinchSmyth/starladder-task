@@ -12,6 +12,9 @@ import App    from '../App'
 import router from '../router'
 
 /* eslint-disable no-new */
+
+window.eventBus = new Vue()
+
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     router,
