@@ -29,3 +29,4 @@ config/database.yml
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+public/packs/manifest.json
