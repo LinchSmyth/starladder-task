@@ -3,14 +3,15 @@ class ApplicationController < ActionController::Base
 
   before_action :render_layout
 
+  def index
+  end
+
+  private
+
   def render_layout
     if request.format.symbol == :html
       render :html => '', :layout => true
       return
     end
-  end
-
-  def index
-
   end
 end
