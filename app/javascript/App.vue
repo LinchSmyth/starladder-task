@@ -12,10 +12,10 @@
   <v-toolbar color="indigo" dark fixed app>
     <v-spacer v-if="!showActions"/>
 
-    <v-toolbar-title>StarLadder</v-toolbar-title>
+    <v-toolbar-title class="px-3">StarLadder</v-toolbar-title>
 
     <v-toolbar-items v-if="showActions">
-      <v-btn flat>
+      <v-btn flat :to="{ name: 'TournamentsList' }">
         tournaments
       </v-btn>
     </v-toolbar-items>

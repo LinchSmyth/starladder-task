@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resource :users, only: [:update] do
     get '/login', to: 'users#login'
   end
+
+  get '*path', to: 'application#index'
 end
