@@ -6,6 +6,7 @@ Vue.use(Router)
 import Home from 'views/Home'
 import { UserLogin } from './views/users'
 import { TournamentsList } from './views/tournaments'
+import { CommandsList } from './views/commands'
 
 const router =  new Router({
   mode: 'history',
@@ -25,7 +26,12 @@ const router =  new Router({
       path: '/tournaments',
       name: 'TournamentsList',
       component: TournamentsList
-    }
+    },
+    {
+      path: '/tournaments/:id/commands',
+      name: 'CommandsList',
+      component: CommandsList
+    },
   ]
 })
 

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_one :command
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :recoverable, :rememberable

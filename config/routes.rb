@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :tournaments, only: [:index] do
-    resources :commands, only: [:index, :create, :destroy]
+    resources :commands, shallow: true, only: [:index, :create, :destroy]
   end
 
   get '*path', to: 'application#index'

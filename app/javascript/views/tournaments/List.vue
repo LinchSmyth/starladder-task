@@ -11,7 +11,11 @@
       :items="tournaments"
   >
     <v-flex xs12 sm6 md4 lg3 slot="item" slot-scope="props">
-      <v-card hover>
+      <v-card
+        hover
+        :ripple="{ class: 'indigo--text' }"
+        :to="{ name: 'CommandsList', params: { id: props.item.id } }"
+      >
         <v-card-title>
           <h4>{{ props.item.name }}</h4>
         </v-card-title>
@@ -22,7 +26,7 @@
           <v-list-tile>
             <v-list-tile-content>Registered:</v-list-tile-content>
             <v-list-tile-content class="align-end">
-              {{ props.item.commands_registered }}
+              {{ props.item.commands_count }}
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -40,25 +44,20 @@
     name: 'TournamentsList',
     data() {
       return {
-        tournaments: [
-          {
-            name: 'DOTA 2 Amateurs league',
-            commands_registered: 3
-          },
-          {
-            name: 'DOTA 2 Professional league',
-            commands_registered: 3
-          },
-          {
-            name: 'DOTA 2 AllStars league',
-            commands_registered: 3
-          }
-        ]
+        tournaments: []
       }
     },
 
     mounted() {
-
+      this.$http
+          .get('/tournaments')
+          .then(
+            res => {
+              console.log(res)
+              this.tournaments = res.body.tournaments
+            },
+            err => {}
+          )
     },
   }
 </script>

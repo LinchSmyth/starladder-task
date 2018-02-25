@@ -12,6 +12,7 @@
           <v-layout column>
             <v-text-field
               v-for="f in incompletedFields"
+              :key="f"
               :label="humanizedLabels[f]"
               v-model="user[f]"
               :rules="[() => user[f].length > 0 || 'This field is required']"

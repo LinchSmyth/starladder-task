@@ -1,0 +1,5 @@
+class CommandsController < ApplicationController
+
+
+
+end
