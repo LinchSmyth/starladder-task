@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   def render_layout
     if request.format.symbol == :html
       render :html => '', :layout => true
-      return
     end
   end
 end

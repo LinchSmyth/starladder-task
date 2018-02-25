@@ -3,6 +3,8 @@ class Command < ApplicationRecord
   belongs_to :user
   belongs_to :tournament
 
-  validates :name, presence: true
+  validates :name, :logo, presence: true
+
+  mount_uploader :logo, LogoUploader
 
 end

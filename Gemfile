@@ -38,6 +38,8 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'omniauth-oauth2', '~> 1.5.0'
 gem 'active_model_serializers'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -20,7 +20,7 @@
 
       <v-card-actions>
         <v-spacer/>
-        <v-btn flat color="success" @click="">register</v-btn>
+        <v-btn flat color="success" @click="createCommand">register</v-btn>
       </v-card-actions>
     </v-card>
   </v-flex>
@@ -54,13 +54,13 @@
 
         this.$http
             .post(
-              this.$route.path,
+              `/tournaments/${this.$route.params.id}/commands`,
               data)
             .then(
               res => {
-
+                console.log(res)
               },
-              err => {}
+              err => { console.log(err) }
             )
       }
     },

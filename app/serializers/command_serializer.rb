@@ -1,6 +1,6 @@
 class CommandSerializer < ActiveModel::Serializer
 
-  attributes :name, :owner, :is_owner
+  attributes :name, :owner, :is_owner, :logo_url, :registration_date
 
 
   def is_owner
@@ -9,6 +9,10 @@ class CommandSerializer < ActiveModel::Serializer
 
   def owner
     object.user.full_name
+  end
+
+  def registration_date
+    object.created_at.strftime('%d %B %Y, %H:%M')
   end
 
 end

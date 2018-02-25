@@ -30,3 +30,4 @@ config/database.yml
 yarn-debug.log*
 .yarn-integrity
 public/packs/manifest.json
+public/uploads/*

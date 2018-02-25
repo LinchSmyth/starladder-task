@@ -59,13 +59,7 @@
     components: { CommandCard },
     data() {
       return {
-        commands: [
-          {
-            name: 'NaVi',
-            owner: 'Alexander Bell',
-            is_owner: false,
-          },
-        ],
+        commands: [],
         tournament: {},
       }
     },
@@ -80,14 +74,14 @@
           err => {}
         )
 
-//      this.$http
-//          .get(this.$route.path)
-//          .then(
-//            res => {
-//              this.commands = res.body.commands
-//            },
-//            err => {}
-//          )
+      this.$http
+          .get(this.$route.path)
+          .then(
+            res => {
+              this.commands = res.body.commands
+            },
+            err => {}
+          )
     },
   }
 </script>

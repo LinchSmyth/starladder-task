@@ -13,7 +13,7 @@
   <v-card>
     <v-card-media
       class="gray-background"
-      src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/9d/Natusvincerelogo.jpg/240px-Natusvincerelogo.jpg"
+      :src="command.logo_url"
       contain
       height="108px"
     >
@@ -25,8 +25,8 @@
     </v-card-media>
 
     <v-card-text>
-      <h2 class="text-xs-center">{{ command.name }}</h2>
-      <span class="grey--text">Number 10</span>
+      <h2 class="text-xs-center mb-2">{{ command.name }}</h2>
+      <p class="grey--text text-xs-center mb-0">{{ command.registration_date }}</p>
     </v-card-text>
 
     <v-divider/>
