@@ -17,7 +17,7 @@
               <span class="headline white--text shadowed-text">{{tournament.name}}</span>
             </v-layout>
             <v-layout flexbox align-end>
-              <v-btn color="success">register your command now!</v-btn>
+              <v-btn color="success">register your team now!</v-btn>
             </v-layout>
           </v-layout>
         </v-container>

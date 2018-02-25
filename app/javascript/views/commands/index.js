@@ -1,3 +1,4 @@
 import CommandsList from './List'
+import NewCommand from './New'
 
-export { CommandsList }
+export { CommandsList, NewCommand }
