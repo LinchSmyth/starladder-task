@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/login', to: 'users#login'
   end
 
-  resources :tournaments, only: [:index] do
+  resources :tournaments, only: [:index, :show] do
     resources :commands, shallow: true, only: [:index, :create, :destroy]
   end
 

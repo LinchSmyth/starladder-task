@@ -7,6 +7,10 @@ class User < ApplicationRecord
   devise :recoverable, :rememberable
 
 
+  def full_name
+    [first_name, last_name].join(' ')
+  end
+
   def self.from_omniauth(auth)
     find_or_create_by(uid: auth['uid'].to_s) do |u|
       u.password   = Devise.friendly_token(20)

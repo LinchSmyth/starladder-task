@@ -4,6 +4,6 @@ class TournamentSerializer < ActiveModel::Serializer
 
 
   def commands_count
-    3
+    object.commands.count
   end
 end
