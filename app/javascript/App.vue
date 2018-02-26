@@ -23,8 +23,11 @@
     <v-spacer/>
 
     <v-toolbar-items v-if="showActions">
-      <v-btn flat>
+      <v-btn flat v-if="!userLogin" @click="login">
         login
+      </v-btn>
+      <v-btn flat v-else @click="logout">
+        logout
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -55,17 +58,62 @@
     name: 'App',
     data() {
       return {
-        showActions: true
+        showActions: true,
+        userLogin: false
       }
     },
 
     created() {
       window.eventBus.$on('toggle-actions', this.toggleActions)
+
+      const originalSetItem = localStorage.setItem;
+      const originalRemoveItem = localStorage.removeItem;
+
+      localStorage.setItem = function() {
+        const event = new Event('localStorageChange');
+        originalSetItem.apply(this, arguments);
+        document.dispatchEvent(event);
+      }
+
+      localStorage.removeItem = function() {
+        const event = new Event('localStorageChange');
+        originalRemoveItem.apply(this, arguments);
+        document.dispatchEvent(event);
+      }
+
+      document.addEventListener(
+        "localStorageChange",
+        () => { this.handleLocalStorageChange() },
+        false
+      );
+
+      this.handleLocalStorageChange()
     },
 
     methods: {
+      login() {
+        this.$router.push({ path: '/auth/starladder' })
+        location.reload();
+      },
+
+      logout() {
+        this.$http
+            .get('/users/logout')
+            .then(
+              res => {
+                localStorage.removeItem('auth-token')
+                location.reload();
+              },
+              err => { console.log(err) }
+            )
+      },
+
       toggleActions(displayable) {
         this.showActions = displayable
+      },
+
+      handleLocalStorageChange() {
+        this.userLogin = !!localStorage.getItem('auth-token')
       },
     },
   }

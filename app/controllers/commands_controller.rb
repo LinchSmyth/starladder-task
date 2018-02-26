@@ -1,6 +1,6 @@
 class CommandsController < ApplicationController
 
-  before_action :load_command, only: [:update, :destroy]
+  before_action :load_command, only: [:show, :update, :destroy]
 
 
   def index
@@ -24,7 +24,7 @@ class CommandsController < ApplicationController
   end
 
   def show
-    render json: Command.find(params[:id])
+    render json: @command
   end
 
   def update

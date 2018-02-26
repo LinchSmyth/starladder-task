@@ -21,7 +21,15 @@
     >
       <v-container fill-height class="pa-0">
         <v-layout fill-height align-end column class="pa-1">
-          <v-btn flat icon color="warning" :to="{ name: 'EditCommand', params: { id: command.id } }"><v-icon>edit</v-icon></v-btn>
+          <v-btn
+            flat
+            icon
+            color="warning"
+            :to="{ name: 'EditCommand', params: { id: command.id } }"
+            v-if="command.is_owner"
+          >
+            <v-icon>edit</v-icon>
+          </v-btn>
         </v-layout>
       </v-container>
     </v-card-media>

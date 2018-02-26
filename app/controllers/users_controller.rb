@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     render 'users/login'
   end
 
+  def logout
+    sign_out(current_user)
+    head :ok
+  end
+
   def update
     if current_user.update(user_params)
       head :ok

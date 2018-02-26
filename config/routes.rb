@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resource :users, only: [:update] do
     get '/login', to: 'users#login'
+    get '/logout', to: 'users#logout'
   end
 
   resources :tournaments, only: [:index, :show] do
