@@ -6,7 +6,7 @@ Vue.use(Router)
 import Home from 'views/Home'
 import { UserLogin } from './views/users'
 import { TournamentsList } from './views/tournaments'
-import { CommandsList, NewCommand } from './views/commands'
+import { CommandsList, NewCommand, EditCommand } from './views/commands'
 
 const router =  new Router({
   mode: 'history',
@@ -37,6 +37,11 @@ const router =  new Router({
       path: '/tournaments/:id/commands/new',
       name: 'NewCommand',
       component: NewCommand
+    },
+    {
+      path: '/commands/:id/edit',
+      name: 'EditCommand',
+      component: EditCommand
     },
   ]
 })

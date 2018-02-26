@@ -53,10 +53,9 @@
           .get('/tournaments')
           .then(
             res => {
-              console.log(res)
               this.tournaments = res.body.tournaments
             },
-            err => {}
+            err => { console.log(err) }
           )
     },
   }

@@ -23,12 +23,26 @@ class CommandsController < ApplicationController
     end
   end
 
+  def show
+    render json: Command.find(params[:id])
+  end
+
   def update
-    head(:unauthorized) && return if verified_user? { |u| u.id == @command.user_id }
+    head(:unauthorized) && return unless verified_user? { |u| u.id == @command.user_id }
+
+    if @command.update(command_params)
+      render json: @command
+    else
+      render json: { errors: @command.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
+    head(:unauthorized) && return unless verified_user? { |u| u.id == @command.user_id }
 
+    tournament_id = @command.tournament_id
+    @command.destroy
+    render json: { tournament_id: tournament_id }
   end
 
 

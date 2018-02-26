@@ -1,10 +1,14 @@
 class CommandSerializer < ActiveModel::Serializer
 
-  attributes :name, :owner, :is_owner, :logo_url, :registration_date
+  attributes :name, :id, :tournament_id, :owner, :is_owner, :logo, :registration_date
 
 
   def is_owner
     current_user ? current_user.id == object.user_id : false
+  end
+
+  def logo
+    object.logo_url
   end
 
   def owner

@@ -17,7 +17,13 @@
               <span class="headline white--text shadowed-text">{{tournament.name}}</span>
             </v-layout>
             <v-layout flexbox align-end>
-              <v-btn color="success">register your team now!</v-btn>
+              <v-btn
+                color="success"
+                v-if="!isAnyCommandRegistered"
+                :to="{ name: 'NewCommand' }"
+              >
+                register your team now!
+              </v-btn>
             </v-layout>
           </v-layout>
         </v-container>
@@ -40,6 +46,7 @@
         hide-actions
         :rows-per-page-items="[-1]"
         :items="commands"
+        no-data-text="No teams registered for now"
     >
       <v-flex xs12 sm6 md4 lg3 slot="item" slot-scope="props">
         <command-card :command="props.item"/>
@@ -83,5 +90,11 @@
             err => {}
           )
     },
+
+    computed: {
+      isAnyCommandRegistered() {
+        return this.commands.filter((command) => { return command.is_owner }).length > 0
+      }
+    }
   }
 </script>

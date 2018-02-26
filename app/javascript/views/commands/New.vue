@@ -3,26 +3,16 @@
 
 
   <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
-    <v-card>
-      <v-card-title>
-        <v-layout column>
-          <file-upload
-            accept="'image/jpeg,image/jpeg,image/png'"
-            select-label="select an image"
-            remove-label="remove image"
-            bg-color="#f3f3f3"
-            v-model="command.logo"
-          />
+    <v-alert type="error" v-for="e in errors" :value="e">
+      {{ e }}
+    </v-alert>
 
-          <v-text-field label="Name" v-model="command.name"/>
-        </v-layout>
-      </v-card-title>
+    <div class="mb-4"></div>
 
-      <v-card-actions>
-        <v-spacer/>
-        <v-btn flat color="success" @click="createCommand">register</v-btn>
-      </v-card-actions>
-    </v-card>
+    <command-form :command="command">
+      <v-spacer/>
+      <v-btn flat color="success" @click="createCommand">register</v-btn>
+    </command-form>
   </v-flex>
 
 
@@ -31,11 +21,11 @@
 
 
 <script>
-  import FileUpload from './components/FileUpload'
+  import CommandForm from './components/Form'
 
   export default {
     name: 'NewCommand',
-    components: { FileUpload },
+    components: { CommandForm },
 
     data() {
       return {
@@ -43,6 +33,8 @@
           name: '',
           logo: null,
         },
+
+        errors: [],
       }
     },
 
@@ -58,9 +50,12 @@
               data)
             .then(
               res => {
-                console.log(res)
+                this.$router.push({ name: 'CommandsList', params: { id: this.$route.params.id } })
               },
-              err => { console.log(err) }
+              err => {
+                console.log(err)
+                this.errors = err.body.errors
+              }
             )
       }
     },

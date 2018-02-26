@@ -69,9 +69,7 @@
 <script>
   export default {
     props: {
-      value: {
-        type: File
-      },
+      value: [File, String],
       accept: {
         type: String,
         default: '*'
