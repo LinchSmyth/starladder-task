@@ -13,7 +13,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     find_or_create_by(uid: auth['uid'].to_s) do |u|
-      u.password   = Devise.friendly_token(20)
       u.provider   = auth['provider']
       u.first_name = auth['info']['first_name'] || ''
       u.last_name  = auth['info']['last_name'] || ''
