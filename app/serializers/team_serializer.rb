@@ -1,4 +1,4 @@
-class CommandSerializer < ActiveModel::Serializer
+class TeamSerializer < ActiveModel::Serializer
 
   attributes :name, :id, :tournament_id, :owner, :is_owner, :logo, :registration_date
 

@@ -19,8 +19,8 @@
             <v-layout flexbox align-end>
               <v-btn
                 color="success"
-                v-if="!isAnyCommandRegistered"
-                :to="{ name: 'NewCommand' }"
+                v-if="!isAnyTeamRegistered"
+                :to="{ name: 'NewTeam' }"
               >
                 register your team now!
               </v-btn>
@@ -45,11 +45,11 @@
         wrap
         hide-actions
         :rows-per-page-items="[-1]"
-        :items="commands"
+        :items="teams"
         no-data-text="No teams registered for now"
     >
       <v-flex xs12 sm6 md4 lg3 slot="item" slot-scope="props">
-        <command-card :command="props.item"/>
+        <team-card :team="props.item"/>
       </v-flex>
     </v-data-iterator>
   </v-container>
@@ -59,14 +59,14 @@
 
 
 <script>
-  import CommandCard from './components/CommandCard'
+  import TeamCard from './components/TeamCard'
 
   export default {
-    name: 'CommandsList',
-    components: { CommandCard },
+    name: 'TeamsList',
+    components: { TeamCard },
     data() {
       return {
-        commands: [],
+        teams: [],
         tournament: {},
       }
     },
@@ -85,15 +85,15 @@
           .get(this.$route.path)
           .then(
             res => {
-              this.commands = res.body.commands
+              this.teams = res.body.teams
             },
             err => {}
           )
     },
 
     computed: {
-      isAnyCommandRegistered() {
-        return this.commands.filter((command) => { return command.is_owner }).length > 0
+      isAnyTeamRegistered() {
+        return this.teams.filter((team) => { return team.is_owner }).length > 0
       }
     }
   }

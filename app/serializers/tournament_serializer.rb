@@ -1,9 +1,9 @@
 class TournamentSerializer < ActiveModel::Serializer
 
-  attributes :id, :name, :commands_count
+  attributes :id, :name, :teams_count
 
 
-  def commands_count
-    object.commands.count
+  def teams_count
+    object.teams.count
   end
 end

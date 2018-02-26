@@ -1,4 +1,4 @@
-class Command < ApplicationRecord
+class Team < ApplicationRecord
 
   belongs_to :user
   belongs_to :tournament
@@ -13,7 +13,7 @@ class Command < ApplicationRecord
 
 
   def user_tournament_uniqueness
-    if Command.where(tournament_id: tournament.id, user_id: user.id).any? && !self.id
+    if Team.where(tournament_id: tournament.id, user_id: user.id).any? && !self.id
       errors.add(:base, 'you have already registered a team on this tournament')
     end
   end

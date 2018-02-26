@@ -9,10 +9,10 @@
           select-label="select an image"
           remove-label="remove image"
           bg-color="#f3f3f3"
-          v-model="command.logo"
+          v-model="team.logo"
       />
 
-      <v-text-field label="Name" v-model="command.name"/>
+      <v-text-field label="Name" v-model="team.name"/>
     </v-layout>
   </v-card-title>
 
@@ -29,10 +29,10 @@
   import FileUpload from './FileUpload'
 
   export default {
-    name: 'CommandForm',
+    name: 'TeamForm',
     components: { FileUpload },
     props: {
-      command: [Object],
+      team: [Object],
     },
   }
 </script>

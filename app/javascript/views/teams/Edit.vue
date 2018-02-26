@@ -9,11 +9,11 @@
 
     <div class="mb-4"></div>
 
-    <command-form :command="command">
+    <team-form :team="team">
       <v-spacer/>
       <v-btn flat color="error" @click="deleteConfirmation = true">Delete</v-btn>
-      <v-btn flat color="success" @click="updateCommand">Update</v-btn>
-    </command-form>
+      <v-btn flat color="success" @click="updateTeam">Update</v-btn>
+    </team-form>
   </v-flex>
 
 
@@ -24,7 +24,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="green" flat @click.native="deleteConfirmation = false">cancel</v-btn>
-        <v-btn color="error" flat @click.native="deleteCommand">delete</v-btn>
+        <v-btn color="error" flat @click.native="deleteTeam">delete</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -35,15 +35,15 @@
 
 
 <script>
-  import CommandForm from './components/Form'
+  import TeamForm from './components/Form'
 
   export default {
-    name: 'EditCommand',
-    components: { CommandForm },
+    name: 'EditTeam',
+    components: { TeamForm },
 
     data() {
       return {
-        command: {
+        team: {
           name: '',
           logo: null,
         },
@@ -55,10 +55,10 @@
 
     mounted() {
       this.$http
-          .get(`/commands/${this.$route.params.id}`)
+          .get(`/teams/${this.$route.params.id}`)
           .then(
             res => {
-              this.command = res.body.command
+              this.team = res.body.team
             },
             err => {
               console.log(err)
@@ -67,18 +67,18 @@
     },
 
     methods: {
-      updateCommand() {
+      updateTeam() {
         const data = new FormData
-        data.append('command[logo]', this.command.logo)
-        data.append('command[name]', this.command.name)
+        data.append('team[logo]', this.team.logo)
+        data.append('team[name]', this.team.name)
 
         this.$http
             .put(
-              `/commands/${this.$route.params.id}`,
+              `/teams/${this.$route.params.id}`,
               data)
             .then(
               res => {
-                this.$router.push({ name: 'CommandsList', params: { id: res.body.command.tournament_id } })
+                this.$router.push({ name: 'TeamsList', params: { id: res.body.team.tournament_id } })
               },
               err => {
                 console.log(err)
@@ -87,14 +87,14 @@
             )
       },
 
-      deleteCommand() {
+      deleteTeam() {
         this.deleteConfirmation = false
 
         this.$http
-            .delete(`/commands/${this.$route.params.id}`)
+            .delete(`/teams/${this.$route.params.id}`)
             .then(
               res => {
-                this.$router.push({ name: 'CommandsList', params: { id: res.body.tournament_id } })
+                this.$router.push({ name: 'TeamsList', params: { id: res.body.tournament_id } })
               },
               err => { console.log(err) }
             )

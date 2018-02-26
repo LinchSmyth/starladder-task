@@ -14,7 +14,7 @@
       <v-card
         hover
         :ripple="{ class: 'indigo--text' }"
-        :to="{ name: 'CommandsList', params: { id: props.item.id } }"
+        :to="{ name: 'TeamsList', params: { id: props.item.id } }"
       >
         <v-card-title>
           <h4>{{ props.item.name }}</h4>
@@ -26,7 +26,7 @@
           <v-list-tile>
             <v-list-tile-content>Registered:</v-list-tile-content>
             <v-list-tile-content class="align-end">
-              {{ props.item.commands_count }}
+              {{ props.item.teams_count }}
             </v-list-tile-content>
           </v-list-tile>
         </v-list>

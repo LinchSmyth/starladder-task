@@ -9,10 +9,10 @@
 
     <div class="mb-4"></div>
 
-    <command-form :command="command">
+    <team-form :team="team">
       <v-spacer/>
-      <v-btn flat color="success" @click="createCommand">register</v-btn>
-    </command-form>
+      <v-btn flat color="success" @click="createTeam">register</v-btn>
+    </team-form>
   </v-flex>
 
 
@@ -21,15 +21,15 @@
 
 
 <script>
-  import CommandForm from './components/Form'
+  import TeamForm from './components/Form'
 
   export default {
-    name: 'NewCommand',
-    components: { CommandForm },
+    name: 'NewTeam',
+    components: { TeamForm },
 
     data() {
       return {
-        command: {
+        team: {
           name: '',
           logo: null,
         },
@@ -39,18 +39,18 @@
     },
 
     methods: {
-      createCommand() {
+      createTeam() {
         const data = new FormData
-        data.append('command[logo]', this.command.logo)
-        data.append('command[name]', this.command.name)
+        data.append('team[logo]', this.team.logo)
+        data.append('team[name]', this.team.name)
 
         this.$http
             .post(
-              `/tournaments/${this.$route.params.id}/commands`,
+              `/tournaments/${this.$route.params.id}/teams`,
               data)
             .then(
               res => {
-                this.$router.push({ name: 'CommandsList', params: { id: this.$route.params.id } })
+                this.$router.push({ name: 'TeamsList', params: { id: this.$route.params.id } })
               },
               err => {
                 console.log(err)

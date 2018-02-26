@@ -15,7 +15,7 @@
   <v-card>
     <v-card-media
       class="gray-background"
-      :src="command.logo"
+      :src="team.logo"
       contain
       height="108px"
     >
@@ -25,8 +25,8 @@
             flat
             icon
             color="warning"
-            :to="{ name: 'EditCommand', params: { id: command.id } }"
-            v-if="command.is_owner"
+            :to="{ name: 'EditTeam', params: { id: team.id } }"
+            v-if="team.is_owner"
           >
             <v-icon>edit</v-icon>
           </v-btn>
@@ -35,8 +35,8 @@
     </v-card-media>
 
     <v-card-text>
-      <h2 class="text-xs-center mb-2">{{ command.name }}</h2>
-      <p class="grey--text text-xs-center mb-0">{{ command.registration_date }}</p>
+      <h2 class="text-xs-center mb-2">{{ team.name }}</h2>
+      <p class="grey--text text-xs-center mb-0">{{ team.registration_date }}</p>
     </v-card-text>
 
     <v-divider/>
@@ -45,7 +45,7 @@
       <v-list-tile>
         <v-list-tile-content>Owner:</v-list-tile-content>
         <v-list-tile-content class="align-end">
-          {{ command.owner }}
+          {{ team.owner }}
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -55,7 +55,7 @@
 
 <script>
   export default {
-    name: 'CommandCard',
-    props: ['command'],
+    name: 'TeamCard',
+    props: ['team'],
   }
 </script>
