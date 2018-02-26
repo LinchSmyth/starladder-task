@@ -46,7 +46,7 @@
 
         this.$http
             .post(
-              `/tournaments/${this.$route.params.id}/teams`,
+              `/api/tournaments/${this.$route.params.id}/teams`,
               data)
             .then(
               res => {

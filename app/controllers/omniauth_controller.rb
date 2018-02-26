@@ -1,5 +1,4 @@
 class OmniauthController < ApplicationController
-  skip_before_action :render_layout
   skip_before_action :authenticate_user!
 
   def callback

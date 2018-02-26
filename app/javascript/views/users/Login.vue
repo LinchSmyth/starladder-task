@@ -90,7 +90,7 @@
 
       registrationCompleted() {
         window.eventBus.$emit('toggle-actions', true)
-        this.$router.push({ name: 'Home' })
+        this.$router.push({ name: 'TournamentsList' })
       },
     },
   }

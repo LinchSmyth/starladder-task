@@ -55,7 +55,7 @@
 
     mounted() {
       this.$http
-          .get(`/teams/${this.$route.params.id}`)
+          .get(`/api/teams/${this.$route.params.id}`)
           .then(
             res => {
               this.team = res.body.team
@@ -74,7 +74,7 @@
 
         this.$http
             .put(
-              `/teams/${this.$route.params.id}`,
+              `/api/teams/${this.$route.params.id}`,
               data)
             .then(
               res => {
@@ -91,7 +91,7 @@
         this.deleteConfirmation = false
 
         this.$http
-            .delete(`/teams/${this.$route.params.id}`)
+            .delete(`/api/teams/${this.$route.params.id}`)
             .then(
               res => {
                 this.$router.push({ name: 'TeamsList', params: { id: res.body.tournament_id } })

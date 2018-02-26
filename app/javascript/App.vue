@@ -4,6 +4,36 @@
   main {
     padding-top: 64px;
   }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+
+  .slide-fade-leave-active {
+    transition: all .3s ease;
+  }
+
+  .slide-fade-enter{
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  .slide-fade-leave-to {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  .custom-toolbar-title {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: .2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+  }
 </style>
 
 <template>
@@ -12,7 +42,9 @@
   <v-toolbar color="indigo" dark fixed app>
     <v-spacer v-if="!showActions"/>
 
-    <v-toolbar-title class="px-3">StarLadder</v-toolbar-title>
+    <v-toolbar-title class="ma-0 px-4 custom-toolbar-title" @click="$router.push({ name: 'Home' })">
+      <span>StarLadder</span>
+    </v-toolbar-title>
 
     <v-toolbar-items v-if="showActions">
       <v-btn flat :to="{ name: 'TournamentsList' }">
@@ -34,7 +66,9 @@
 
   <main>
     <v-container>
-      <router-view></router-view>
+      <transition name="slide-fade" mode="out-in">
+        <router-view></router-view>
+      </transition name="slide-fade">
     </v-container>
   </main>
 

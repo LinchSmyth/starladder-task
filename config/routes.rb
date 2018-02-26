@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, only: []
 
-  root to: 'application#index'
+  root to: 'application#app'
 
   get 'auth/:provider/callback', to: 'omniauth#callback'
 
@@ -10,9 +10,15 @@ Rails.application.routes.draw do
     get '/logout', to: 'users#logout'
   end
 
-  resources :tournaments, only: [:index, :show] do
-    resources :teams, shallow: true, only: [:index, :show, :create, :update, :destroy]
+  namespace :api do
+    scope module: :internal, path: '' do
+      resources :tournaments, only: [:index, :show] do
+        resources :teams, shallow: true, only: [:index, :show, :create, :update, :destroy]
+      end
+    end
   end
 
-  get '*path', to: 'application#index'
+  get '*path', to: 'application#app', constraints: -> (req) do
+    !req.xhr? && req.format.html?
+  end
 end

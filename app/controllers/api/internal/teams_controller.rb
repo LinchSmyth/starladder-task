@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController
+class Api::Internal::TeamsController < ApplicationController
 
   before_action :load_team, only: [:show, :update, :destroy]
 

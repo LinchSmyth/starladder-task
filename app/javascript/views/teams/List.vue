@@ -20,7 +20,7 @@
               <v-btn
                 color="success"
                 v-if="!isAnyTeamRegistered"
-                :to="{ name: 'NewTeam' }"
+                @click="registerTeam"
               >
                 register your team now!
               </v-btn>
@@ -73,7 +73,7 @@
 
     mounted() {
       this.$http
-        .get(`/tournaments/${ this.$route.params.id }`)
+        .get(`/api/tournaments/${ this.$route.params.id }`)
         .then(
           res => {
             this.tournament = res.body.tournament
@@ -82,7 +82,7 @@
         )
 
       this.$http
-          .get(this.$route.path)
+          .get(`/api/${this.$route.path}`)
           .then(
             res => {
               this.teams = res.body.teams
@@ -91,10 +91,22 @@
           )
     },
 
+    methods: {
+      registerTeam() {
+        if (!!localStorage.getItem('auth-token')) {
+          this.$router.push({ name: 'NewTeam' })
+        }
+        else {
+          this.$router.push({ path: '/auth/starladder' })
+          location.reload();
+        }
+      },
+    },
+
     computed: {
       isAnyTeamRegistered() {
         return this.teams.filter((team) => { return team.is_owner }).length > 0
-      }
+      },
     }
   }
 </script>

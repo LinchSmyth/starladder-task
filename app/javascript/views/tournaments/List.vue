@@ -50,7 +50,7 @@
 
     mounted() {
       this.$http
-          .get('/tournaments')
+          .get('/api/tournaments')
           .then(
             res => {
               this.tournaments = res.body.tournaments
