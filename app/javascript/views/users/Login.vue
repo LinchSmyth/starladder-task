@@ -1,4 +1,6 @@
 <template>
+<v-main>
+
   <v-layout>
     <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
       <v-alert type="warning" :value="true" >
@@ -11,12 +13,12 @@
         <v-card-title>
           <v-layout column>
             <v-text-field
-              v-for="f in incompletedFields"
-              :key="f"
-              :label="humanizedLabels[f]"
-              v-model="user[f]"
-              :rules="[() => user[f].length > 0 || 'This field is required']"
-              required
+                v-for="f in incompletedFields"
+                :key="f"
+                :label="humanizedLabels[f]"
+                v-model="user[f]"
+                :rules="[() => user[f].length > 0 || 'This field is required']"
+                required
             ></v-text-field>
           </v-layout>
         </v-card-title>
@@ -28,6 +30,8 @@
       </v-card>
     </v-flex>
   </v-layout>
+
+</v-main>
 </template>
 
 
@@ -90,7 +94,7 @@
 
       registrationCompleted() {
         window.eventBus.$emit('toggle-actions', true)
-        this.$router.push({ name: 'TournamentsList' })
+        this.$router.push({ name: 'Toun' })
       },
     },
   }

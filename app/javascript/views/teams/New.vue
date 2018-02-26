@@ -1,22 +1,22 @@
 <template>
-<v-layout>
+<v-main>
 
+  <v-layout>
+    <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
+      <v-alert type="error" v-for="e in errors" :value="e">
+        {{ e }}
+      </v-alert>
 
-  <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
-    <v-alert type="error" v-for="e in errors" :value="e">
-      {{ e }}
-    </v-alert>
+      <div class="mb-4"></div>
 
-    <div class="mb-4"></div>
+      <team-form :team="team">
+        <v-spacer/>
+        <v-btn flat color="success" @click="createTeam">register</v-btn>
+      </team-form>
+    </v-flex>
+  </v-layout>
 
-    <team-form :team="team">
-      <v-spacer/>
-      <v-btn flat color="success" @click="createTeam">register</v-btn>
-    </team-form>
-  </v-flex>
-
-
-</v-layout>
+</v-main>
 </template>
 
 

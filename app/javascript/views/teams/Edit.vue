@@ -1,36 +1,36 @@
 <template>
-<v-layout>
+<v-main>
+
+  <v-layout>
+    <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
+      <v-alert type="error" v-for="e in errors" :value="e">
+        {{ e }}
+      </v-alert>
+
+      <div class="mb-4"></div>
+
+      <team-form :team="team">
+        <v-spacer/>
+        <v-btn flat color="error" @click="deleteConfirmation = true">Delete</v-btn>
+        <v-btn flat color="success" @click="updateTeam">Update</v-btn>
+      </team-form>
+    </v-flex>
 
 
-  <v-flex xs12 sm8 md6 lg4 offset-sm2 offset-md3 offset-lg4>
-    <v-alert type="error" v-for="e in errors" :value="e">
-      {{ e }}
-    </v-alert>
+    <v-dialog v-model="deleteConfirmation" persistent max-width="300px">
+      <v-card>
+        <v-card-title class="headline">Are you sure?</v-card-title>
+        <v-card-text>This operation cannot be undone</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green" flat @click.native="deleteConfirmation = false">cancel</v-btn>
+          <v-btn color="error" flat @click.native="deleteTeam">delete</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
 
-    <div class="mb-4"></div>
-
-    <team-form :team="team">
-      <v-spacer/>
-      <v-btn flat color="error" @click="deleteConfirmation = true">Delete</v-btn>
-      <v-btn flat color="success" @click="updateTeam">Update</v-btn>
-    </team-form>
-  </v-flex>
-
-
-  <v-dialog v-model="deleteConfirmation" persistent max-width="300px">
-    <v-card>
-      <v-card-title class="headline">Are you sure?</v-card-title>
-      <v-card-text>This operation cannot be undone</v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="green" flat @click.native="deleteConfirmation = false">cancel</v-btn>
-        <v-btn color="error" flat @click.native="deleteTeam">delete</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-
-
-</v-layout>
+</v-main>
 </template>
 
 

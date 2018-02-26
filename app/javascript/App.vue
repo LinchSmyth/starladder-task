@@ -1,10 +1,6 @@
 <style lang="scss">
   @import 'vuetify/dist/vuetify.min.css';
 
-  main {
-    padding-top: 64px;
-  }
-
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
@@ -37,7 +33,7 @@
 </style>
 
 <template>
-<v-app>
+<v-app light>
 
   <v-toolbar color="indigo" dark fixed app>
     <v-spacer v-if="!showActions"/>
@@ -64,13 +60,9 @@
     </v-toolbar-items>
   </v-toolbar>
 
-  <main>
-    <v-container>
-      <transition name="slide-fade" mode="out-in">
-        <router-view></router-view>
-      </transition name="slide-fade">
-    </v-container>
-  </main>
+  <transition name="slide-fade" mode="out-in">
+    <router-view></router-view>
+  </transition>
 
 </v-app>
 </template>
@@ -80,8 +72,11 @@
   import VueResource from 'vue-resource'
   import Vuetify     from 'vuetify'
 
+  import VMain from 'components/VMain'
+
   Vue.use(VueResource)
   Vue.use(Vuetify)
+  Vue.component('v-main', VMain)
 
   Vue.http.interceptors.push(function(request, next) {
     request.headers.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`);
